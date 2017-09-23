@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Help";
+}
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+<br/>
+<h4>Push this .NET Framework application</h4>
+<blockquote>> cf push {appname} -b hwc_buildpack -s windows2012R2</blockquote>
+
+<h4>Scale the application to 2 instances</h4>
+<blockquote>> cf scale {appname} -i 2</blockquote>
+
+<h4>Map a simulated production route to the application</h4>
+<blockquote>> cf map-route {appname} {domainname} --hostname {appname}-prod</blockquote>
+
+<h4>Set environment variables</h4>
+<blockquote>> cf se {appname} PROD_MODE BLUE</blockquote>
+<blockquote>> cf se {appname} WORKSHOP_URL {workshop-apps-url}</blockquote>
+
+<h4>Create a User Provided Service - use connection string provided in workshop instructions</h4>
+<blockquote>>  cf create-user-provided-service AttendeeContext -p "{\"connectionstring\":\"{workshop-connectionstring}\"}"</blockquote>
+<blockquote>>  cf create-user-provided-service DefaultConnection -p "{\"connectionstring\":\"{workshop-connectionstring}\"}"</blockquote>
+
+<h4>Bind to the user provided services</h4>
+<blockquote>> cf bind-service {appname} AttendeeContext</blockquote>
+<blockquote>> cf bind-service {appname} DefaultConnection</blockquote>
+
+<h4>Restart the application</h4>
+<blockquote>> cf restart {appname}</blockquote>
+<br />
+<h3>Setting up for Blue/Green Deployment</h3>
+<br />
+<h4>Push this .NET Framework application to a second application</h4>
+<blockquote>> cf push {appname2} -b hwc_buildpack -s windows2012R2</blockquote>
+
+<h4>Scale the application to 2 instances</h4>
+<blockquote>> cf scale {appname2} -i 2</blockquote>
+
+<h4>Set environment variables</h4>
+<blockquote>> cf se {appname2} PROD_MODE GREEN</blockquote>
+<blockquote>> cf se {appname2} WORKSHOP_URL {workshop-apps-url}</blockquote>
+
+<h4>Bind services to the 2nd application</h4>
+<blockquote>> cf bind-service {appname2} AttendeeContext</blockquote>
+<blockquote>> cf bind-service {appname2} DefaultConnection</blockquote>
+
+<h4>Restart the 2nd application</h4>
+<blockquote>> cf restart {appname2}</blockquote>
+
+<h4>Map the second applicaton to the same production route</h4>
+<blockquote>> cf map-route {appname2} {domainname} --hostname {appname}-prod</blockquote>
+
+<h4>Unmap the first applicaton from the production route</h4>
+<blockquote>> cf unmap-route {appname} {domainname} --hostname {appname}-prod</blockquote>

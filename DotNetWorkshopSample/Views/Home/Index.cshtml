@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Pivotal .NET Workshop</h1>
+    <p class="lead">Demo .NET application for Cloud Foundry Workshops.</p>
+    <h5>@ViewBag.Index</h5>
+    <h5>@ViewBag.ProdMode</h5>
+    <h5>@ViewBag.Port</h5>
+    <h5>@ViewBag.Uptime</h5>
+    <p><a href="https://github.com/corn-pivotal/PCF-DotNet-Workshop/blob/master/Labs/Lab2.md" class="btn btn-primary btn-lg">Lab Instructions &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Apps Manager</h2>
+        <p>
+            Use the Apps Manager for your workshop to view and manage your applications, services, and logs.
+        </p>
+        <p><a class="btn btn-default" href="@ViewBag.WorkshopUrl">Apps Manager &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Steeltoe libraries</h2>
+        <p>Jumpstart your Cloud Native development with Steeltoe libraries for .NET Framework and .NET Core.</p>
+        <p><a class="btn btn-default" href="http://steeltoe.io">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>High Availability</h2>
+        <p>PCF can failover to another instance and will restart the application instance if it fails the health check.</p>
+            <button type="button"  class="btn btn-default"/>
+            @Html.ActionLink("Kill Me", "Index", "KillMe")
+
+    </div>
+</div>
